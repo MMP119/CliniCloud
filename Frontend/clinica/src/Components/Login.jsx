@@ -47,11 +47,16 @@ export default function Login() {
     return (
         <>
         <Navbar />
-        
+
         <div className="flex-1 flex items-center justify-center px-4 py-12">
             <div className="w-full max-w-md bg-white p-8 rounded-xl shadow-md">
-
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle" />
+                
+                <div className="flex justify-center mb-4">
+                    <span className="material-symbols-outlined mb-2 text-blue-600 leading-none inline-block " style={{ fontSize: "150px" }}>
+                        account_circle
+                    </span>
+                </div>
+                
                 
                 <h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Iniciar sesión</h2>
 
