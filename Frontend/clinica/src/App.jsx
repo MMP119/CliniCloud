@@ -10,6 +10,8 @@ import DoctorDashboard from "./Pages/Doctor/DashboardDoctor";
 import LabDashboard from "./Pages/Laboratorio/DashboardLab";
 import CalendarioDoctor from "./Pages/Doctor/Calendario";
 import CitasListaDoctor from "./Pages/Doctor/Citas";
+import ResultadosDoctor from "./Pages/Doctor/Resultados";
+import DespensaDoctor from "./Pages/Doctor/Despensa";
 
 function App() {
   return(
@@ -26,6 +28,8 @@ function App() {
           <Route index element={<DoctorDashboard />} />
           <Route path="calendario" element={<CalendarioDoctor />} />
           <Route path="citas" element={<CitasListaDoctor />} />
+          <Route path="resultados" element={<ResultadosDoctor />} />
+          <Route path="despensa" element={<DespensaDoctor />} />
         </Route>
 
         <Route path="/dashboard/lab" element={<LabLayout />}> 
