@@ -6,8 +6,9 @@ import Home from './Pages/Home'
 import Login from './Components/Login'
 import DoctorLayout from "./Layouts/DoctorLayout";
 import LabLayout from "./Layouts/LabLayout";
-import DoctorDashboard from "./Pages/DashboardDoctor";
-import LabDashboard from "./Pages/DashboardLab";
+import DoctorDashboard from "./Pages/Doctor/DashboardDoctor";
+import LabDashboard from "./Pages/Laboratorio/DashboardLab";
+import CitasDoctor from "./Pages/Doctor/Citas";
 
 function App() {
   return(
@@ -22,6 +23,7 @@ function App() {
 
         <Route path="/dashboard/doctor" element={<DoctorLayout />}> 
           <Route index element={<DoctorDashboard />} />
+          <Route path="citas" element={<CitasDoctor />} />
         </Route>
 
         <Route path="/dashboard/lab" element={<LabLayout />}> 

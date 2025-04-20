@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 export default function DoctorLayout() {
     const navigate = useNavigate();
@@ -20,16 +20,19 @@ export default function DoctorLayout() {
                 <h2 className="text-3xl font-bold text-blue-700 mb-6">👨‍⚕️ Doctor</h2>
                 
                 <nav className="flex flex-col gap-4">
+                    
 
-                    <button className="text-left hover:bg-blue-100 p-3 rounded-md">
-                    📅 Mis Citas
-                    </button>
-                    <button className="text-left hover:bg-blue-100 p-3 rounded-md">
-                    🧾 Recetas
-                    </button>
-                    <button className="text-left hover:bg-blue-100 p-3 rounded-md">
-                    📄 Resultados
-                    </button>
+                    <Link to="/dashboard/doctor/citas" className="hover:bg-blue-100 p-3 rounded-md">
+                        📅 Mis Citas
+                    </Link>
+
+                    <Link to="/dashboard/doctor/recetas" className="text-left hover:bg-blue-100 p-3 rounded-md">
+                        🧾 Recetas
+                    </Link>
+
+                    <Link to="/dashboard/doctor/resultados" className="text-left hover:bg-blue-100 p-3 rounded-md">
+                        📄 Resultados
+                    </Link>
 
 
                 </nav>
