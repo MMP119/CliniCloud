@@ -4,16 +4,31 @@ import './App.css'
 import MainLayout from './Layouts/MainLayout'
 import Home from './Pages/Home'
 import Login from './Components/Login'
+import DoctorLayout from "./Layouts/DoctorLayout";
+import LabLayout from "./Layouts/LabLayout";
+import DoctorDashboard from "./Pages/DashboardDoctor";
+import LabDashboard from "./Pages/DashboardLab";
 
 function App() {
   return(
     <Router>
       <Routes>
+        
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/agendar-cita" element={<AppointmentForm />} />
           <Route path="/login" element={<Login />} />
         </Route>
+
+        <Route path="/dashboard/doctor" element={<DoctorLayout />}> 
+          <Route index element={<DoctorDashboard />} />
+        </Route>
+
+        <Route path="/dashboard/lab" element={<LabLayout />}> 
+          <Route index element={<LabDashboard />} />
+        </Route>
+
+        
       </Routes>
     </Router>
   )
