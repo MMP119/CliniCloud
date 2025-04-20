@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Navbar from "../../Components/Navbar";
+import Chatbot from "../../Components/Chatbot";
 
 export default function AppointmentForm() {
 
@@ -24,6 +25,7 @@ export default function AppointmentForm() {
 
         <>
         <Navbar />
+        <Chatbot />
 
         <div className="flex-1 flex items-center justify-center px-4 py-12">
             <div className="w-full max-w-xl bg-white p-8 rounded-xl shadow-md">

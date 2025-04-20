@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import nube  from "../assets/nube.svg";
+import Chatbot from "../Components/Chatbot";
 
 export default function Home() {
     return (
@@ -8,6 +9,7 @@ export default function Home() {
         // agregar navbar
         <>
         <Navbar />
+        <Chatbot />
 
         <div className="flex flex-col flex-1 w-full">
 
