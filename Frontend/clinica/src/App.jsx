@@ -8,7 +8,8 @@ import DoctorLayout from "./Layouts/DoctorLayout";
 import LabLayout from "./Layouts/LabLayout";
 import DoctorDashboard from "./Pages/Doctor/DashboardDoctor";
 import LabDashboard from "./Pages/Laboratorio/DashboardLab";
-import CitasDoctor from "./Pages/Doctor/Citas";
+import CalendarioDoctor from "./Pages/Doctor/Calendario";
+import CitasListaDoctor from "./Pages/Doctor/Citas";
 
 function App() {
   return(
@@ -23,7 +24,8 @@ function App() {
 
         <Route path="/dashboard/doctor" element={<DoctorLayout />}> 
           <Route index element={<DoctorDashboard />} />
-          <Route path="citas" element={<CitasDoctor />} />
+          <Route path="calendario" element={<CalendarioDoctor />} />
+          <Route path="citas" element={<CitasListaDoctor />} />
         </Route>
 
         <Route path="/dashboard/lab" element={<LabLayout />}> 

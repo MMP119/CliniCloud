@@ -12,7 +12,7 @@ export default function DoctorLayout() {
     };
 
     return (
-        <div className="min-h-screen flex bg-gray-100 text-gray-800 font-sans">
+        <div className="h-screen flex bg-gray-100 text-gray-800 font-sans">
         
         {/* Sidebar del doctor */}
         <aside className="w-64 bg-white shadow-lg p-6 flex flex-col justify-between">
@@ -22,17 +22,22 @@ export default function DoctorLayout() {
                 <nav className="flex flex-col gap-4">
                     
 
-                    <Link to="/dashboard/doctor/citas" className="hover:bg-blue-100 p-3 rounded-md">
-                        📅 Mis Citas
+                    <Link to="/dashboard/doctor/calendario" className="hover:bg-blue-100 p-3 rounded-md text-xl">
+                        📅 Calendario
                     </Link>
 
-                    <Link to="/dashboard/doctor/recetas" className="text-left hover:bg-blue-100 p-3 rounded-md">
-                        🧾 Recetas
+                    <Link to="/dashboard/doctor/citas" className="text-left hover:bg-blue-100 p-3 rounded-md text-xl">
+                        📋 Citas
                     </Link>
 
-                    <Link to="/dashboard/doctor/resultados" className="text-left hover:bg-blue-100 p-3 rounded-md">
+                    <Link to="/dashboard/doctor/resultados" className="text-left hover:bg-blue-100 p-3 rounded-md text-xl">
                         📄 Resultados
                     </Link>
+
+                    <Link to="/dashboard/doctor/despensa" className="text-left hover:bg-blue-100 p-3 rounded-md text-xl">
+                        📦 Despensa
+                    </Link>
+
 
 
                 </nav>
@@ -47,7 +52,7 @@ export default function DoctorLayout() {
         </aside>
 
         {/* contenido del dashboard */}
-        <main className="flex-1 p-8">
+        <main className="flex-1 p-8 overflow-y-auto max-h-screen">
             <Outlet />
         </main>
         </div>
