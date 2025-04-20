@@ -12,6 +12,9 @@ import CalendarioDoctor from "./Pages/Doctor/Calendario";
 import CitasListaDoctor from "./Pages/Doctor/Citas";
 import ResultadosDoctor from "./Pages/Doctor/Resultados";
 import DespensaDoctor from "./Pages/Doctor/Despensa";
+import RevisarSolicitudesLab from "./Pages/Laboratorio/RevisarSolicitudes";
+import EnviarInformesLab from "./Pages/Laboratorio/EnviarInformes";
+import PruebasRealizadasLab from "./Pages/Laboratorio/PruebasRealizadas";
 
 function App() {
   return(
@@ -34,6 +37,9 @@ function App() {
 
         <Route path="/dashboard/lab" element={<LabLayout />}> 
           <Route index element={<LabDashboard />} />
+          <Route path="solicitudes" element={<RevisarSolicitudesLab />} />
+          <Route path="informes" element={<EnviarInformesLab />} /> 
+          <Route path="pruebas" element={<PruebasRealizadasLab />} />
         </Route>
 
         

@@ -1,4 +1,4 @@
-import { Outlet, useNavigate } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 export default function LabLayout() {
     const navigate = useNavigate();
@@ -7,7 +7,7 @@ export default function LabLayout() {
         
         // TODO: cerrar sesión (Cognito, localStorage, etc)!!!!!!!!!!!!!!!!!!!
         console.log("Sesión cerrada");
-        navigate("/login");
+        navigate("/");
 
     };
 
@@ -21,15 +21,20 @@ export default function LabLayout() {
                 <h2 className="text-3xl font-bold text-blue-700 mb-6">🧪Laboratorio</h2>
 
                 <nav className="flex flex-col gap-4">
-                    <button className="text-left hover:bg-blue-100 p-3 rounded-md">
-                    📥 Solicitudes recibidas
-                    </button>
-                    <button className="text-left hover:bg-blue-100 p-3 rounded-md">
-                    🔬 Resultados realizados
-                    </button>
-                    <button className="text-left hover:bg-blue-100 p-3 rounded-md">
+
+
+                    <Link to="/dashboard/lab/solicitudes" className="text-left hover:bg-blue-100 p-3 rounded-md text-xl">
+                    📥 Revisar solicitudes
+                    </Link>
+
+                    <Link to="/dashboard/lab/informes" className="text-left hover:bg-blue-100 p-3 rounded-md text-xl">
                     📤 Enviar informes
-                    </button>
+                    </Link>
+                    
+                    <Link to="/dashboard/lab/pruebas" className="text-left hover:bg-blue-100 p-3 rounded-md text-xl">
+                    🔬 Pruebas realizadas
+                    </Link>
+
 
                 </nav>
             </div>

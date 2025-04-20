@@ -44,7 +44,7 @@ export default function Home() {
                 </div>
                 <div>
                     <h3 className="text-xl font-semibold text-blue-700">Resultados rápidos</h3>
-                    <p className="text-gray-600 mt-2">Recibe análisis directamente en tu cuenta médica.</p>
+                    <p className="text-gray-600 mt-2">Recibe análisis directamente.</p>
                 </div>
                 <div>
                     <h3 className="text-xl font-semibold text-blue-700">Seguridad y privacidad</h3>
