@@ -17,6 +17,7 @@ CREATE TABLE LOGIN(
     Login_Id INT PRIMARY KEY AUTO_INCREMENT,
     Cognito_Id VARCHAR(250) NOT NULL,
     Email VARCHAR(100) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
     Rol_Type ENUM('Doctor', 'Laboratorio') NOT NULL
 );
 

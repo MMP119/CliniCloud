@@ -3,7 +3,7 @@
 ## Autenticación Inicio
 
 1. POST /api/login -> Iniciar sesión (correo, password)
-2. POST /api/schedule -> Reservar cita médica (nombre, correo, motivo, fecha) y generar id único 
+2. POST /api/register_patient -> Reservar cita médica (nombre, correo, motivo, fecha) y generar id único 
 3. POST /api/logout -> Cerrar sesión
 
 

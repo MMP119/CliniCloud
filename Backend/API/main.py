@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from database import get_db_pool
+from routes.autenticacion import router as login_router
 
 app = FastAPI()
 
@@ -11,6 +12,8 @@ app.add_middleware(
     allow_methods=["*"],  
     allow_headers=["*"],  
 )
+
+app.include_router(login_router)
 
 @app.on_event("startup")
 async def startup_event():
