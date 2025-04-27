@@ -1,0 +1,17 @@
+services:
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: seminario_proyecto  # contraseña de root
+      MYSQL_DATABASE: dbProyecto  # Crea la base de datos automáticamente
+      TZ: America/Guatemala # Zona horaria
+    ports:
+      - "3306:3306"  # Mapea el puerto 3306 del contenedor al puerto 3306 de la máquina local
+    volumes:
+      - ./Backend/DB/DBCliniCloud.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD", "mysql", "-h", "localhost", "-uroot", "-pseminario_practica2", "-e", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s    
