@@ -12,7 +12,7 @@ python -m venv .venv
 
 para Windows
 ``` bash
-.venv/bin/activate
+.venv/Script/activate
 ``` 
 
 para Linux/macOS
