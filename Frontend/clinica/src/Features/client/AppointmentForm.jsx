@@ -4,7 +4,7 @@ import Chatbot from "../../Components/Chatbot";
 
 export default function AppointmentForm() {
 
-    const [form, setForm] = useState({ nombre: "", correo: "", motivo: "", fecha: "" });
+    const [form, setForm] = useState({ nombre: "", correo: "", motivo: "", fecha: "", hora: "" });
     const [codigo, setCodigo] = useState(null);
 
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -71,6 +71,15 @@ export default function AppointmentForm() {
                         onChange={handleChange}
                         required
                         className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+
+                    <input
+                        type="time"
+                        name="hora"
+                        value={form.hora}
+                        onChange={handleChange}
+                        required
+                        className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"                  
                     />
 
                     <button

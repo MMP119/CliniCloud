@@ -31,7 +31,7 @@ export default function DoctorLayout() {
                     </Link>
 
                     <Link to="/dashboard/doctor/resultados" className="text-left hover:bg-blue-100 p-3 rounded-md text-xl">
-                        📄 Resultados
+                        📄 Resultados del Laboratorio
                     </Link>
 
                     <Link to="/dashboard/doctor/despensa" className="text-left hover:bg-blue-100 p-3 rounded-md text-xl">
