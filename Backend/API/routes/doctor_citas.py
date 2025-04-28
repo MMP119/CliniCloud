@@ -23,6 +23,7 @@ async def get_citas(request: Request):
                         Description, 
                         Patient_Appointment
                     FROM PATIENT
+                    WHERE Appointment_status = 'Pendiente'
                 """)
                 patients = await cursor.fetchall()
 
@@ -65,11 +66,18 @@ async def enviar_cita_al_laboratorio(request: Request, data: SolicitudRequest):
                     VALUES (%s, %s, 'pendiente', '')
                 """, (paciente["Patient_Id"], paciente["Description"]))
 
+                # Actualizar el estado de la cita a 'Realizada'
+                await cursor.execute("""
+                    UPDATE PATIENT
+                    SET Appointment_status = 'Realizada'
+                    WHERE Patient_Id = %s
+                """, (data.patient_id,))
+
                 await conn.commit()
 
                 print(f"Solicitud enviada al laboratorio para el paciente {paciente['Patient_Name']}")
                 print(f"Motivo: {paciente['Description']}") 
-                return {"status": 200, "message": "Solicitud enviada al laboratorio"}
+                return {"status": 200, "message": "Solicitud enviada al laboratorio y estado de la cita actualizado"}
 
     except HTTPException:
         raise

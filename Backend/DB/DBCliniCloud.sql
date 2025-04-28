@@ -9,6 +9,7 @@ CREATE TABLE PATIENT(
     Patient_email VARCHAR(100) NOT NULL,
     Description VARCHAR(250) NOT NULL,
     Patient_Appointment DATETIME NOT NULL,
+    Appointment_status ENUM('Pendiente', 'Realizada') DEFAULT 'Pendiente',
     Unique_Code VARCHAR(250) NOT NULL
 );
 

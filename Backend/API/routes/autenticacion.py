@@ -79,22 +79,48 @@ async def register_patient(request: Request, data: RegisterPatientRequest):
 
         async with pool.acquire() as conn:
             async with conn.cursor() as cursor:
+                # Verificar si ya existe un paciente con el mismo email
+                await cursor.execute(
+                    "SELECT * FROM PATIENT WHERE Patient_email = %s", 
+                    (data.email,)
+                )
+                existing_patient = await cursor.fetchone()
+
+                if existing_patient:
+                    raise HTTPException(
+                        status_code=400, 
+                        detail="Ya existe un paciente registrado con este email"
+                    )
+
+                # Verificar si ya existe una cita a la misma hora y día
+                await cursor.execute(
+                    "SELECT * FROM PATIENT WHERE Patient_Appointment = %s", 
+                    (data.appointment,)
+                )
+                existing_appointment = await cursor.fetchone()
+
+                if existing_appointment:
+                    raise HTTPException(
+                        status_code=400, 
+                        detail="Ya existe una cita programada para esta fecha y hora"
+                    )
+
                 # Generamos un código único corto
                 unique_code = generate_short_code()
 
                 # Verificamos si el código ya existe 
                 await cursor.execute("SELECT * FROM PATIENT WHERE Unique_Code = %s", (unique_code,))
-                existing_patient = await cursor.fetchone()
+                existing_code = await cursor.fetchone()
 
                 # Si ya existe, generamos otro código
-                while existing_patient:
+                while existing_code:
                     unique_code = generate_short_code()
                     await cursor.execute("SELECT * FROM PATIENT WHERE Unique_Code = %s", (unique_code,))
-                    existing_patient = await cursor.fetchone()
+                    existing_code = await cursor.fetchone()
 
                 sql = """
-                INSERT INTO PATIENT (Patient_Name, Patient_email, Description, Patient_Appointment, Unique_Code)
-                VALUES (%s, %s, %s, %s, %s)
+                INSERT INTO PATIENT (Patient_Name, Patient_email, Description, Patient_Appointment, Appointment_status, Unique_Code)
+                VALUES (%s, %s, %s, %s, %s, %s)
                 """
 
                 await cursor.execute(sql, (
@@ -102,6 +128,7 @@ async def register_patient(request: Request, data: RegisterPatientRequest):
                     data.email,
                     data.description,
                     data.appointment,
+                    "Pendiente",
                     unique_code
                 ))
 
@@ -112,6 +139,9 @@ async def register_patient(request: Request, data: RegisterPatientRequest):
                     "message": "Paciente registrado exitosamente",
                     "unique_code": unique_code
                 }
+
+    except HTTPException:
+        raise
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error interno del servidor: {str(e)}")
