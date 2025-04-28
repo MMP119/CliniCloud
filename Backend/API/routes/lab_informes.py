@@ -5,8 +5,12 @@ from database import get_db_pool
 
 router = APIRouter()
 
+# ---------- MODELOS ----------
+
 class InformeEnviarRequest(BaseModel):
     id: int
+
+# ---------- ENDPOINTS ----------
 
 @router.get("/api/informes-terminados")
 async def get_solicitudes_lab(request: Request):

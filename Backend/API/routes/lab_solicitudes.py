@@ -5,9 +5,13 @@ from database import get_db_pool
 
 router = APIRouter()
 
+# ---------- MODELOS ----------
+
 class DiagnosticoUpdate(BaseModel):
     diagnostico: str
     estado: str
+
+# ---------- ENDPOINTS ----------
 
 @router.get("/api/solicitudes-lab")
 async def get_solicitudes_lab(request: Request):

@@ -5,6 +5,8 @@ from database import get_db_pool
 
 router = APIRouter()
 
+# ---------- ENDPOINTS ----------
+
 @router.get("/api/citas-doctor")
 async def get_doctor_appointments(request: Request):
     try:

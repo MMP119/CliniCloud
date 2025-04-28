@@ -5,8 +5,12 @@ from database import get_db_pool
 
 router = APIRouter()
 
+# ---------- MODELOS ----------
+
 class SolicitudRequest(BaseModel):
     patient_id: int
+
+# ---------- ENDPOINTS ----------
 
 @router.get("/api/citas")
 async def get_citas(request: Request):

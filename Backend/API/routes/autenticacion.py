@@ -27,6 +27,8 @@ class RegisterPatientRequest(BaseModel):
 
 # ---------- ENDPOINTS ----------
 
+# TODO -> AWS cognito
+
 @router.post("/api/login")
 async def login(request: Request, data: LoginRequest):
     try:
