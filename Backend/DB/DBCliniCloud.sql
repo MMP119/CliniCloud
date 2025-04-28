@@ -43,3 +43,12 @@ CREATE TABLE RESULT_OF_DIAGNOSTIC(
     CONSTRAINT Pacient_Result FOREIGN KEY(Patient_Id) REFERENCES PATIENT(Patient_Id),
     CONSTRAINT Pacient_Diagnostic FOREIGN KEY(Diagnostic) REFERENCES TESTS_PERFORMED(Test_Id)
 );
+
+CREATE TABLE SOLICITUDES_LAB (
+    Solicitud_Id INT PRIMARY KEY AUTO_INCREMENT,
+    Patient_Id INT NOT NULL,
+    Motivo VARCHAR(250) NOT NULL,
+    Estado ENUM('pendiente', 'terminado') DEFAULT 'pendiente',
+    Diagnostico VARCHAR(250) DEFAULT '',
+    CONSTRAINT FK_Patient_Solicitud FOREIGN KEY (Patient_Id) REFERENCES PATIENT(Patient_Id)
+);

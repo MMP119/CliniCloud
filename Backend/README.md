@@ -22,7 +22,7 @@
 
 1. GET api/diagnostico -> listar diagnósticos de los pacientes (id, nombre, diagnostico)
 2. POST api/receta -> asignar receta al paciente (nombre, cantidad)
-3. POSR api/resultado -> enviar resultado al chatbot (paciente, diagnostico, receta)
+3. POST api/resultado -> enviar resultado al chatbot (paciente, diagnostico, receta)
 
 ### Despensa
 

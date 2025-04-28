@@ -5,6 +5,9 @@ from database import get_db_pool
 
 router = APIRouter()
 
+class SolicitudRequest(BaseModel):
+    patient_id: int
+
 @router.get("/api/citas")
 async def get_citas(request: Request):
     try:
@@ -38,5 +41,37 @@ async def get_citas(request: Request):
 
                 return citas
 
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error interno del servidor: {str(e)}")
+
+@router.post("/api/citas")
+async def enviar_cita_al_laboratorio(request: Request, data: SolicitudRequest):
+    try:
+        pool = await get_db_pool(request.app)
+
+        async with pool.acquire() as conn:
+            async with conn.cursor(aiomysql.DictCursor) as cursor:
+                
+                # Verificar que el paciente exista
+                await cursor.execute("SELECT * FROM PATIENT WHERE Patient_Id = %s", (data.patient_id,))
+                paciente = await cursor.fetchone()
+
+                if not paciente:
+                    raise HTTPException(status_code=404, detail="Paciente no encontrado")
+
+                # Insertar en la tabla de solicitudes
+                await cursor.execute("""
+                    INSERT INTO SOLICITUDES_LAB (Patient_Id, Motivo, Estado, Diagnostico)
+                    VALUES (%s, %s, 'pendiente', '')
+                """, (paciente["Patient_Id"], paciente["Description"]))
+
+                await conn.commit()
+
+                print(f"Solicitud enviada al laboratorio para el paciente {paciente['Patient_Name']}")
+                print(f"Motivo: {paciente['Description']}") 
+                return {"status": 200, "message": "Solicitud enviada al laboratorio"}
+
+    except HTTPException:
+        raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error interno del servidor: {str(e)}")
