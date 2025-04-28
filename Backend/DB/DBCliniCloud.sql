@@ -32,9 +32,12 @@ CREATE TABLE MEDICINE(
 CREATE TABLE TESTS_PERFORMED(
     Test_Id INT PRIMARY KEY AUTO_INCREMENT,
     Diagnostic VARCHAR(250) NOT NULL,
+    Motive VARCHAR(250) NOT NULL,
+    Status ENUM('pendiente', 'terminado') DEFAULT 'pendiente',
     Patient_Id INT,
     CONSTRAINT Pacient_Test FOREIGN KEY(Patient_Id) REFERENCES PATIENT(Patient_Id)
 );
+
 
 CREATE TABLE RESULT_OF_DIAGNOSTIC(
     Result_Id INT PRIMARY KEY AUTO_INCREMENT,
@@ -43,13 +46,4 @@ CREATE TABLE RESULT_OF_DIAGNOSTIC(
     Recipe VARCHAR(250) NOT NULL,
     CONSTRAINT Pacient_Result FOREIGN KEY(Patient_Id) REFERENCES PATIENT(Patient_Id),
     CONSTRAINT Pacient_Diagnostic FOREIGN KEY(Diagnostic) REFERENCES TESTS_PERFORMED(Test_Id)
-);
-
-CREATE TABLE SOLICITUDES_LAB (
-    Solicitud_Id INT PRIMARY KEY AUTO_INCREMENT,
-    Patient_Id INT NOT NULL,
-    Motivo VARCHAR(250) NOT NULL,
-    Estado ENUM('pendiente', 'terminado') DEFAULT 'pendiente',
-    Diagnostico VARCHAR(250) DEFAULT '',
-    CONSTRAINT FK_Patient_Solicitud FOREIGN KEY (Patient_Id) REFERENCES PATIENT(Patient_Id)
 );

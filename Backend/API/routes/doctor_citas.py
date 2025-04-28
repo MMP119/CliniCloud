@@ -62,7 +62,7 @@ async def enviar_cita_al_laboratorio(request: Request, data: SolicitudRequest):
 
                 # Insertar en la tabla de solicitudes
                 await cursor.execute("""
-                    INSERT INTO SOLICITUDES_LAB (Patient_Id, Motivo, Estado, Diagnostico)
+                    INSERT INTO TESTS_PERFORMED (Patient_Id, Motive, Status, Diagnostic)
                     VALUES (%s, %s, 'pendiente', '')
                 """, (paciente["Patient_Id"], paciente["Description"]))
 

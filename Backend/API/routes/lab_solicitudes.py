@@ -19,14 +19,14 @@ async def get_solicitudes_lab(request: Request):
                 # Consulta para obtener las solicitudes pendientes con el nombre del paciente
                 query = """
                     SELECT 
-                        s.Solicitud_Id, 
+                        s.Test_Id, 
                         p.Patient_Name, 
-                        s.Motivo, 
-                        s.Estado, 
-                        s.Diagnostico
-                    FROM SOLICITUDES_LAB s
+                        s.Motive, 
+                        s.Status, 
+                        s.Diagnostic
+                    FROM TESTS_PERFORMED s
                     JOIN PATIENT p ON s.Patient_Id = p.Patient_Id
-                    WHERE s.Estado = 'pendiente'
+                    WHERE s.Status = 'pendiente'
                 """
                 await cursor.execute(query)
                 solicitudes = await cursor.fetchall()
@@ -36,11 +36,11 @@ async def get_solicitudes_lab(request: Request):
 
                 response = [
                     {
-                        "id": solicitud["Solicitud_Id"],
+                        "id": solicitud["Test_Id"],
                         "nombrePaciente": solicitud["Patient_Name"],  
-                        "motivo": solicitud["Motivo"],
-                        "estado": solicitud["Estado"],
-                        "diagnostico": solicitud["Diagnostico"]
+                        "motivo": solicitud["Motive"],
+                        "estado": solicitud["Status"],
+                        "diagnostico": solicitud["Diagnostic"]
                     }
                     for solicitud in solicitudes
                 ]
@@ -65,9 +65,9 @@ async def actualizar_diagnostico(id: int, update_data: DiagnosticoUpdate, reques
                 
                 await cursor.execute(
                     """
-                    UPDATE SOLICITUDES_LAB
-                    SET Diagnostico = %s, Estado = %s
-                    WHERE Solicitud_Id = %s
+                    UPDATE TESTS_PERFORMED
+                    SET Diagnostic = %s, Status = %s
+                    WHERE Test_Id = %s
                     """,
                     (update_data.diagnostico, update_data.estado, id)
                 )
