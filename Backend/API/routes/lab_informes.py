@@ -60,6 +60,7 @@ async def enviar_informe(request: Request, datos: InformeEnviarRequest):
         async with pool.acquire() as conn:
             async with conn.cursor(aiomysql.DictCursor) as cursor:
 
+                # Verificar que el informe exista y su estado
                 query_select = """
                     SELECT Status
                     FROM TESTS_PERFORMED
@@ -76,12 +77,21 @@ async def enviar_informe(request: Request, datos: InformeEnviarRequest):
 
                 print(f"Enviando informe {datos.id} al doctor...")
 
-                query_update = """
+                query_update_test = """
                     UPDATE TESTS_PERFORMED
                     SET Status = 'enviado'
                     WHERE Test_Id = %s
                 """
-                await cursor.execute(query_update, (datos.id,))
+                await cursor.execute(query_update_test, (datos.id,))
+
+                query_update_result = """
+                    UPDATE RESULT_OF_DIAGNOSTIC
+                    SET Diagnostic = %s
+                    WHERE Diagnostic = %s
+                      AND Status = 'pendiente'
+                """
+                await cursor.execute(query_update_result, (datos.id, datos.id))
+
                 await conn.commit()
 
                 return {"mensaje": f"Informe {datos.id} enviado correctamente y actualizado a 'enviado'."}

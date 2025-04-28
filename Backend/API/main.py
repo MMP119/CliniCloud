@@ -7,6 +7,7 @@ from routes.doctor_citas import router as doctor_citas_router
 from routes.lab_solicitudes import router as lab_solicitudes_router
 from routes.lab_informes import router as lab_informes_router
 from routes.doctor_despensa import router as doctor_despensa_router
+from routes.doctor_resultados import router as doctor_resultados_router
 
 app = FastAPI()
 
@@ -24,6 +25,7 @@ app.include_router(doctor_citas_router)
 app.include_router(lab_solicitudes_router)
 app.include_router(lab_informes_router)
 app.include_router(doctor_despensa_router)
+app.include_router(doctor_resultados_router)
 
 @app.on_event("startup")
 async def startup_event():

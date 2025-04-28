@@ -44,6 +44,7 @@ CREATE TABLE RESULT_OF_DIAGNOSTIC(
     Patient_Id INT,
     Diagnostic INT,
     Recipe VARCHAR(250) NOT NULL,
+    Status  ENUM('pendiente', 'terminada') DEFAULT 'pendiente',
     CONSTRAINT Pacient_Result FOREIGN KEY(Patient_Id) REFERENCES PATIENT(Patient_Id),
     CONSTRAINT Pacient_Diagnostic FOREIGN KEY(Diagnostic) REFERENCES TESTS_PERFORMED(Test_Id)
 );

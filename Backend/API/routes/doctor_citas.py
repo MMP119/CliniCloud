@@ -70,6 +70,15 @@ async def enviar_cita_al_laboratorio(request: Request, data: SolicitudRequest):
                     VALUES (%s, %s, 'pendiente', '')
                 """, (paciente["Patient_Id"], paciente["Description"]))
 
+                # Obtener el ID del test recién insertado
+                test_id = cursor.lastrowid
+
+                # Insertar en la tabla de resultados
+                await cursor.execute("""
+                    INSERT INTO RESULT_OF_DIAGNOSTIC (Patient_Id, Diagnostic, Recipe, Status)
+                    VALUES (%s, %s, '', 'pendiente')
+                """, (paciente["Patient_Id"], test_id))
+
                 # Actualizar el estado de la cita a 'Realizada'
                 await cursor.execute("""
                     UPDATE PATIENT
