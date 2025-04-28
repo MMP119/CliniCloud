@@ -5,6 +5,7 @@ from routes.autenticacion import router as login_router
 from routes.doctor_calendar import router as doctor_calendar_router
 from routes.doctor_citas import router as doctor_citas_router
 from routes.lab_solicitudes import router as lab_solicitudes_router
+from routes.lab_informes import router as lab_informes_router
 
 app = FastAPI()
 
@@ -20,6 +21,7 @@ app.include_router(login_router)
 app.include_router(doctor_calendar_router)
 app.include_router(doctor_citas_router)
 app.include_router(lab_solicitudes_router)
+app.include_router(lab_informes_router)
 
 @app.on_event("startup")
 async def startup_event():

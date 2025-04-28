@@ -33,7 +33,7 @@ CREATE TABLE TESTS_PERFORMED(
     Test_Id INT PRIMARY KEY AUTO_INCREMENT,
     Diagnostic VARCHAR(250) NOT NULL,
     Motive VARCHAR(250) NOT NULL,
-    Status ENUM('pendiente', 'terminado') DEFAULT 'pendiente',
+    Status ENUM('pendiente', 'terminado', 'enviado') DEFAULT 'pendiente',
     Patient_Id INT,
     CONSTRAINT Pacient_Test FOREIGN KEY(Patient_Id) REFERENCES PATIENT(Patient_Id)
 );
