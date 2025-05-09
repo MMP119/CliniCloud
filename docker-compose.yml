@@ -8,10 +8,14 @@ services:
     ports:
       - "3306:3306"  # Mapea el puerto 3306 del contenedor al puerto 3306 de la máquina local
     volumes:
-      - ./Backend/DB/DBCliniCloud.sql:/docker-entrypoint-initdb.d/init.sql
-    healthcheck:
-      test: ["CMD", "mysql", "-h", "localhost", "-uroot", "-pseminario_practica2", "-e", "SELECT 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-      start_period: 30s    
+      - ./Backend/DB/DBCliniCloud.sql:/docker-entrypoint-initdb.d/init.sql 
+
+  fastapi:
+    build: ./Backend/API
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./Backend/API/.env
+    volumes:
+      - ./Backend/API:/app
+    command: ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

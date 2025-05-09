@@ -1,0 +1,10 @@
+guia.md
+Dockerfile
+.gitignore
+.env
+venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.db
