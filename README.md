@@ -1,6 +1,14 @@
-# SEMI1_1S2025_PROYECTO_A_14
+# CliniCloud - SEMI1_1S2025_PROYECTO_A_14
+[Documentación](/Documentacion/)
+
+
+[Presentación](https://www.canva.com/design/DAGmQ4mWXuw/PbksKGZuWsdNxRDTSwgAHA/edit?utm_content=DAGmQ4mWXuw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+
+## 📌 Descripción General
+CliniCloud es una solución integral para la gestión de clínicas y consultorios médicos. Desarrollada con tecnologías modernas, esta aplicación web permite a profesionales de la salud y pacientes interactuar de manera eficiente, segura y desde cualquier lugar.
  
-## Integrantes
+## 👥 Equipo de Desarrollo
 
 |        **Nombre**         | **Carnet** |
 | :-----------------------: | :--------: |
@@ -11,5 +19,5 @@
 | Mario Ernesto Marroquín Pérez | 202110509|
 
 
-## Link Presentación:
-[Presentación](https://www.canva.com/design/DAGmQ4mWXuw/PbksKGZuWsdNxRDTSwgAHA/edit?utm_content=DAGmQ4mWXuw&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
+
